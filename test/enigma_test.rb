@@ -18,4 +18,12 @@ class EnigmaTest < Minitest::Test
 
     # WIP
   end
+
+  def test_it_can_return_todays_date
+    enigma = Enigma.new
+
+    date = Time.now.strftime("%d/%m/%y").delete('/')
+
+    assert_equal date, enigma.todays_date
+  end
 end
