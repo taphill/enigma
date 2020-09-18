@@ -22,20 +22,28 @@ class EnigmaTest < Minitest::Test
   def test_it_can_return_todays_date
     enigma = Enigma.new
 
-    date = Time.now.strftime("%d/%m/%y").delete('/')
+    date = Time.now.strftime('%d/%m/%y').delete('/')
 
     assert_equal date, enigma.todays_date
+  end
+
+  def test_it_can_generate_offset
+    enigma = Enigma.new
+   
+    date = '040895'
+
+    assert_equal '1025', enigma.generate_offset(date)
   end
 
   def test_it_can_encrypt_message_with_key_and_date
     enigma = Enigma.new
 
     expected = {
-      encryption: "keder ohulw",
-      key: "02715",
-      date: "040895"
+      encryption: 'keder ohulw',
+      key: '02715',
+      date: '040895'
     }
 
-    assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
+    assert_equal expected, enigma.encrypt('hello world', '02715', '040895')
   end
 end
