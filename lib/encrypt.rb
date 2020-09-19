@@ -1,14 +1,11 @@
-require_relative './lib/enigma'
-require_relative './lib/writer'
-require_relative './lib/messenger'
-
+require_relative '../lib/enigma'
+require_relative '../lib/writer'
+require_relative '../lib/messenger'
 
 enigma = Enigma.new
-writer = Writer.new
     
-messenger = Messenger.new(enigma, writer)
+file_manager = FileManager.new(enigma)
 
-require 'pry'; binding.pry
-a = messenger.please_encrypt(ARGV[0])
+message = file_manager.encrypt_file(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
 
-x = 0
+puts message
