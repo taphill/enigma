@@ -9,7 +9,7 @@ class FileManager
   end
 
   def encrypt_file(file_to_encrypt, new_file, key = nil, date = nil)
-    return error_message if please_encrypt(file_to_encrypt, key, date) == error_message
+    return encryption_error_message if encryption_error?(file_to_encrypt, key, date)
 
     encryption = please_encrypt(file_to_encrypt, key, date)
     write_file(new_file, encryption[:encryption])
@@ -32,10 +32,10 @@ class FileManager
     file = File.open(file_to_encrypt, 'r')
 
     return enigma.encrypt(message: file.read, key: key, date: date) if valid_key_and_date?(key, date)
-    return enigma.encrypt(message: file.read, key: key) if key_valid?(key)
+    return enigma.encrypt(message: file.read, key: key) if key_valid?(key) && date.nil?
     return enigma.encrypt(message: file.read) if key.nil? && date.nil?
 
-    error_message
+    encryption_error_message
   end
 
   def please_decrypt(file_to_decrypt, key, date)
