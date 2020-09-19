@@ -1,4 +1,3 @@
-require 'date'
 require_relative '../lib/validator'
 
 class FileManager
@@ -32,7 +31,7 @@ class FileManager
   def please_encrypt(file_to_encrypt, key, date)
     file = File.open(file_to_encrypt, 'r')
 
-    return enigma.encrypt(message: file.read, key: key, date: date) if key_valid?(key) && date_valid?(date)
+    return enigma.encrypt(message: file.read, key: key, date: date) if valid_key_and_date?(key, date)
     return enigma.encrypt(message: file.read, key: key) if key_valid?(key)
     return enigma.encrypt(message: file.read) if key.nil? && date.nil?
 
@@ -42,7 +41,7 @@ class FileManager
   def please_decrypt(file_to_decrypt, key, date)
     file = File.open(file_to_decrypt, 'r')
 
-    return enigma.decrypt(message: file.read, key: key, date: date) if key_valid?(key) && date_valid?(date)
+    return enigma.decrypt(message: file.read, key: key, date: date) if valid_key_and_date?(key, date)
     return enigma.decrypt(message: file.read, key: key) if key_valid?(key)
     return enigma.decrypt(message: file.read) if key.nil? && date.nil?
 

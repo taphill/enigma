@@ -1,4 +1,10 @@
 module Validator
+  require 'date'
+
+  def valid_key_and_date?(key, date)
+    key_valid?(key) && date_valid?(date)
+  end
+
   def key_valid?(key)
     return false unless key.is_a? String
     key.length == 5
