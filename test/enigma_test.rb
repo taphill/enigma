@@ -81,6 +81,21 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt('hel$lo world!', '02715')
   end
 
+  def test_it_can_encrypt_message_wth_random_key_and_todays_date
+    enigma = Enigma.new
+
+    enigma.stubs(:generate_key).returns('30317')
+    enigma.stubs(:todays_date).returns('190920')
+    
+    expected = {
+      encryption: 'qlp$bxg e sh!',
+      key: '30317',
+      date: '190920'
+    }
+
+    assert_equal expected, enigma.encrypt('hel$lo world!')
+  end
+
   def test_it_can_decrypt_message_with_key_and_date
     enigma = Enigma.new
 
