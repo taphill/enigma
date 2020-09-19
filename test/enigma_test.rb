@@ -45,6 +45,8 @@ class EnigmaTest < Minitest::Test
     assert_equal 27, enigma.send(:b_shift, key, date) 
     assert_equal 73, enigma.send(:c_shift, key, date) 
     assert_equal 20, enigma.send(:d_shift, key, date) 
+    
+    assert_equal [3, 27, 73, 20], enigma.send(:shifts, key, date)
   end
 
   def test_it_can_encrypt_message_with_key_and_date
