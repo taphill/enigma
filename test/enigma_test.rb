@@ -24,7 +24,7 @@ class EnigmaTest < Minitest::Test
 
     date = Time.now.strftime('%d/%m/%y').delete('/')
 
-    assert_equal date, enigma.todays_date
+    assert_equal date, enigma.send(:todays_date)
   end
 
   def test_it_can_generate_offset
@@ -32,7 +32,7 @@ class EnigmaTest < Minitest::Test
    
     date = '040895'
 
-    assert_equal '1025', enigma.generate_offset(date)
+    assert_equal '1025', enigma.send(:generate_offset, date)
   end
 
   def test_it_can_find_shifts
@@ -41,10 +41,10 @@ class EnigmaTest < Minitest::Test
     key  = '02715'
     date = '040895'
 
-    assert_equal 3, enigma.a_shift(key, date) 
-    assert_equal 27, enigma.b_shift(key, date) 
-    assert_equal 73, enigma.c_shift(key, date) 
-    assert_equal 20, enigma.d_shift(key, date) 
+    assert_equal 3, enigma.send(:a_shift, key, date) 
+    assert_equal 27, enigma.send(:b_shift, key, date) 
+    assert_equal 73, enigma.send(:c_shift, key, date) 
+    assert_equal 20, enigma.send(:d_shift, key, date) 
   end
 
   def test_it_can_encrypt_message_with_key_and_date
