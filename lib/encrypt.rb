@@ -1,6 +1,5 @@
 require_relative '../lib/enigma'
-require_relative '../lib/writer'
-require_relative '../lib/messenger'
+require_relative '../lib/file_manager'
 
 enigma = Enigma.new
     

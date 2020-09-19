@@ -9,7 +9,7 @@ class FileManager
     return "ERROR: Invalid key" unless key.nil? && date.nil?
 
     encryption = please_encrypt(file_to_encrypt)
-    file = write_file(new_file, encryption[:encryption])
+    write_file(new_file, encryption[:encryption])
 
     "Created '#{new_file}' with the key #{encryption[:key]} and date #{encryption[:date]}"
   end
