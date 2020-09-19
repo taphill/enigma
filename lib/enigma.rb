@@ -51,16 +51,6 @@ class Enigma
     offset.to_s.chars.last(4).join
   end
 
-  def shifts(key, date)
-    shifts = []
-    shifts << a_shift(key, date)
-    shifts << b_shift(key, date)
-    shifts << c_shift(key, date)
-    shifts << d_shift(key, date)
-
-    shifts
-  end
-
   def a_shift(key, date)
     key[0..1].to_i + generate_offset(date)[0].to_i
   end
@@ -75,5 +65,15 @@ class Enigma
 
   def d_shift(key, date)
     key[3..4].to_i + generate_offset(date)[3].to_i
+  end
+
+  def shifts(key, date)
+    shifts = []
+    shifts << a_shift(key, date)
+    shifts << b_shift(key, date)
+    shifts << c_shift(key, date)
+    shifts << d_shift(key, date)
+
+    shifts
   end
 end
