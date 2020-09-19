@@ -9,11 +9,21 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_generate_a_key
     skip
-    enigma = Enigma.new
+    # enigma = Enigma.new
 
     # enigma.expects(:rand(0)).times(5)
 
     # WIP
+  end
+
+  def test_it_can_create_character_set
+    enigma = Enigma.new
+
+    expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
+                "j", "k", "l", "m", "n", "o", "p", "q", "r",
+                "s", "t", "u", "v", "w", "x", "y", "z", " "]
+
+    assert_equal expected, enigma.send(:character_set)
   end
 
   def test_it_can_return_todays_date
