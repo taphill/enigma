@@ -6,7 +6,18 @@ class Enigma
   end
 
   def encrypt(message, key = generate_key, date = todays_date)
+    loop_count = 0
 
+    encryption = message.split('').map do |letter|
+      return letter unless character_set.include?(letter.downcase)
+
+      current_value = character_set.index(letter.downcase)
+      new_value = current_value + shifts(key, date).rotate(loop_count)[0]
+      loop_count += 1
+      character_set.rotate(new_value)[0]
+    end
+
+    { encryption: encryption.join, key: key, date: date }
   end
 
   def generate_key
@@ -21,6 +32,16 @@ class Enigma
 
   def todays_date
     Time.now.strftime('%d/%m/%y').delete('/')
+  end
+
+  def shifts(key, date)
+    shifts = []
+    shifts << a_shift(key, date)
+    shifts << b_shift(key, date)
+    shifts << c_shift(key, date)
+    shifts << d_shift(key, date)
+
+    shifts
   end
 
   def a_shift(key, date)
