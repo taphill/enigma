@@ -22,7 +22,7 @@ class FileManager
 
     decryption = please_decrypt(file_to_decrypt, key, date)
     write_file(new_file, decryption[:decryption])
-    
+
     "Created '#{new_file}' with the key #{decryption[:key]} and date #{decryption[:date]}"
   end
 
