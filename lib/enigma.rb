@@ -23,19 +23,19 @@ class Enigma
     Time.now.strftime('%d/%m/%y').delete('/')
   end
 
-  def a_shift(key, offset)
-    key[0..1].to_i + offset[0].to_i
+  def a_shift(key, date)
+    key[0..1].to_i + generate_offset(date)[0].to_i
   end
 
-  def b_shift(key, offset)
-    key[1..2].to_i + offset[1].to_i
+  def b_shift(key, date)
+    key[1..2].to_i + generate_offset(date)[1].to_i
   end
 
-  def c_shift(key, offset)
-    key[2..3].to_i + offset[2].to_i
+  def c_shift(key, date)
+    key[2..3].to_i + generate_offset(date)[2].to_i
   end
 
-  def d_shift(key, offset)
-    key[3..4].to_i + offset[3].to_i
+  def d_shift(key, date)
+    key[3..4].to_i + generate_offset(date)[3].to_i
   end
 end
