@@ -8,12 +8,11 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_generate_a_key
-    skip
-    # enigma = Enigma.new
+    enigma = Enigma.new
 
-    # enigma.expects(:rand(0)).times(5)
+    enigma.expects(:rand).times(5).then.returns(4)
 
-    # WIP
+    assert_equal '44444', enigma.send(:generate_key)
   end
 
   def test_it_can_create_character_set
