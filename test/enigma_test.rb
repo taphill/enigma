@@ -35,6 +35,18 @@ class EnigmaTest < Minitest::Test
     assert_equal '1025', enigma.generate_offset(date)
   end
 
+  def test_it_can_find_shifts
+    enigma = Enigma.new
+
+    key  = '02715'
+    date = '040895'
+
+    assert_equal 3, enigma.a_shift(key, date) 
+    assert_equal 27, enigma.b_shift(key, date) 
+    assert_equal 73, enigma.c_shift(key, date) 
+    assert_equal 20, enigma.d_shift(key, date) 
+  end
+
   def test_it_can_encrypt_message_with_key_and_date
     enigma = Enigma.new
 
