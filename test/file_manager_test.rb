@@ -4,6 +4,7 @@ class MessengerTest < Minitest::Test
   def setup
     @enigma = Enigma.new
     @file = './test_message.txt'
+    @enrypted_file = './test_encrypted.txt'
     
     @file_manager = FileManager.new(@enigma)
   end
@@ -49,5 +50,27 @@ class MessengerTest < Minitest::Test
     }
 
     assert_equal expected, @file_manager.send(:please_encrypt, @file, nil, nil)
+  end
+
+  def test_it_can_receive_decrypted_message_with_key_and_date
+    expected = {
+      decryption: 'hello wo%rld!',
+      key: '02715',
+      date: '040895'
+    }
+
+    assert_equal expected, @file_manager.send(:please_decrypt, @enrypted_file, '02715', '040895')
+  end
+
+  def test_it_can_receive_decrypted_message_with_key_and_todays_date
+    @enigma.stubs(:todays_date).returns('040895')
+
+    expected = {
+      decryption: 'hello wo%rld!',
+      key: '02715',
+      date: '040895'
+    }
+
+    assert_equal expected, @file_manager.send(:please_decrypt, @enrypted_file, '02715', nil)
   end
 end

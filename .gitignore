@@ -3,6 +3,7 @@ coverage
 message.txt
 test_message.txt
 encrypted.txt
+test_encrypted.txt
 decrypted.txt
 
 .DS_Store
