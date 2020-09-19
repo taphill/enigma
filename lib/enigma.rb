@@ -1,6 +1,4 @@
 class Enigma
-  attr_reader :character_set
-
   def initialize
     @character_set = ('a'..'z').to_a << ' '
   end
@@ -35,6 +33,14 @@ class Enigma
     { decryption: decryption.join, key: key, date: date }
   end
 
+  private
+
+  attr_reader :character_set
+
+  def todays_date
+    Time.now.strftime('%d/%m/%y').delete('/')
+  end
+
   def generate_key
     5.times.map { rand(0..9) }.join
   end
@@ -43,10 +49,6 @@ class Enigma
     offset = date.to_i**2
 
     offset.to_s.chars.last(4).join
-  end
-
-  def todays_date
-    Time.now.strftime('%d/%m/%y').delete('/')
   end
 
   def shifts(key, date)
