@@ -86,7 +86,7 @@ class EnigmaTest < Minitest::Test
 
     enigma.stubs(:generate_key).returns('30317')
     enigma.stubs(:todays_date).returns('190920')
-    
+
     expected = {
       encryption: 'qlp$bxg e sh!',
       key: '30317',
@@ -106,5 +106,25 @@ class EnigmaTest < Minitest::Test
     }
 
     assert_equal expected, enigma.decrypt('keder oh%ulw!', '02715', '040895')
+  end
+
+  def test_it_can_decrypt_message_with_random_key_and_todays_date
+    enigma = Enigma.new
+
+    enigma.stubs(:todays_date).returns('040895')
+
+    encrypted = {
+      encryption: 'keder oh%ulw!',
+      key: '02715',
+      date: '040895'
+    }
+
+    expected = {
+      decryption: 'hello wo%rld!',
+      key: '02715',
+      date: '040895'
+    }
+
+    assert_equal expected, enigma.decrypt(encrypted[:encryption], '02715')
   end
 end
