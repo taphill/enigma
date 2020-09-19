@@ -3,7 +3,7 @@ class Enigma
     @character_set = ('a'..'z').to_a << ' '
   end
 
-  def encrypt(message, key = generate_key, date = todays_date)
+  def encrypt(message:, key: generate_key, date: todays_date)
     loop_count = 0
 
     encryption = message.split('').map do |letter|
@@ -20,7 +20,7 @@ class Enigma
     { encryption: encryption.join, key: key, date: date }
   end
 
-  def decrypt(message, key = generate_key, date = todays_date)
+  def decrypt(message:, key: generate_key, date: todays_date)
     loop_count = 0
 
     decryption = message.split('').map do |letter|

@@ -64,7 +64,7 @@ class EnigmaTest < Minitest::Test
       date: '040895'
     }
 
-    assert_equal expected, enigma.encrypt('hel$lo world!', '02715', '040895')
+    assert_equal expected, enigma.encrypt(message: 'hel$lo world!', key: '02715', date: '040895')
   end
 
   def test_it_can_encrypt_message_with_key_and_todays_date
@@ -78,7 +78,7 @@ class EnigmaTest < Minitest::Test
       date: '190920'
     }
 
-    assert_equal expected, enigma.encrypt('hel$lo world!', '02715')
+    assert_equal expected, enigma.encrypt(message: 'hel$lo world!', key: '02715')
   end
 
   def test_it_can_encrypt_message_wth_random_key_and_todays_date
@@ -93,7 +93,7 @@ class EnigmaTest < Minitest::Test
       date: '190920'
     }
 
-    assert_equal expected, enigma.encrypt('hel$lo world!')
+    assert_equal expected, enigma.encrypt(message: 'hel$lo world!')
   end
 
   def test_it_can_decrypt_message_with_key_and_date
@@ -105,7 +105,7 @@ class EnigmaTest < Minitest::Test
       date: '040895'
     }
 
-    assert_equal expected, enigma.decrypt('keder oh%ulw!', '02715', '040895')
+    assert_equal expected, enigma.decrypt(message: 'keder oh%ulw!', key: '02715', date: '040895')
   end
 
   def test_it_can_decrypt_message_with_random_key_and_todays_date
@@ -125,6 +125,6 @@ class EnigmaTest < Minitest::Test
       date: '040895'
     }
 
-    assert_equal expected, enigma.decrypt(encrypted[:encryption], '02715')
+    assert_equal expected, enigma.decrypt(message: encrypted[:encryption], key: '02715')
   end
 end
