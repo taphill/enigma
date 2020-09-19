@@ -1,6 +1,7 @@
 coverage
 
 message.txt
+test_message.txt
 encrypted.txt
 decrypted.txt
 
