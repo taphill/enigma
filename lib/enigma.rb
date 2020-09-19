@@ -7,12 +7,14 @@ class Enigma
     loop_count = 0
 
     encryption = message.split('').map do |letter|
-      return letter unless character_set.include?(letter.downcase)
-
-      current_value = character_set.index(letter.downcase)
-      new_value = current_value + shifts(key, date).rotate(loop_count).first
-      loop_count += 1
-      character_set.rotate(new_value).first
+      if character_set.include?(letter.downcase)
+        current_value = character_set.index(letter.downcase)
+        new_value = current_value + shifts(key, date).rotate(loop_count).first
+        loop_count += 1
+        character_set.rotate(new_value).first
+      else
+        letter
+      end
     end
 
     { encryption: encryption.join, key: key, date: date }
@@ -22,12 +24,14 @@ class Enigma
     loop_count = 0
 
     decryption = message.split('').map do |letter|
-      return letter unless character_set.include?(letter.downcase)
-
-      current_value = character_set.index(letter.downcase)
-      new_value = current_value - shifts(key, date).rotate(loop_count).first
-      loop_count += 1
-      character_set.rotate(new_value).first
+      if character_set.include?(letter.downcase)
+        current_value = character_set.index(letter.downcase)
+        new_value = current_value - shifts(key, date).rotate(loop_count).first
+        loop_count += 1
+        character_set.rotate(new_value).first
+      else
+        letter
+      end
     end
 
     { decryption: decryption.join, key: key, date: date }
