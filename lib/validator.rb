@@ -1,4 +1,4 @@
-module Validate
+module Validator
   def key_valid?(key)
     return false unless key.is_a? String
     key.length == 5

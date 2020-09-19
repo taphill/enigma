@@ -1,8 +1,8 @@
 require 'date'
-require_relative '../lib/validate'
+require_relative '../lib/validator'
 
 class FileManager
-  include Validate
+  include Validator
   attr_reader :enigma
 
   def initialize(enigma)
