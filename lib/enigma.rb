@@ -21,9 +21,9 @@ class Enigma
   end
 
   def decrypt(message, key = generate_key, date = todays_date)
-   loop_count = 0
+    loop_count = 0
 
-   decryption = message.split('').map do |letter|
+    decryption = message.split('').map do |letter|
       return letter unless character_set.include?(letter.downcase)
 
       current_value = character_set.index(letter.downcase)
