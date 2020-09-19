@@ -20,6 +20,21 @@ class Enigma
     { encryption: encryption.join, key: key, date: date }
   end
 
+  def decrypt(message, key = generate_key, date = todays_date)
+   loop_count = 0
+
+   decryption = message.split('').map do |letter|
+      return letter unless character_set.include?(letter.downcase)
+
+      current_value = character_set.index(letter.downcase)
+      new_value = current_value - shifts(key, date).rotate(loop_count).first
+      loop_count += 1
+      character_set.rotate(new_value).first
+    end
+
+    { decryption: decryption.join, key: key, date: date }
+  end
+
   def generate_key
     5.times.map { rand(0..9) }.join
   end
