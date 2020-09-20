@@ -27,6 +27,14 @@ class MessengerTest < Minitest::Test
     assert_equal expected, @file_manager.send(:please_encrypt, @file, '02715', '040895')
   end
 
+  def test_it_can_write_file
+    file = 'write_file_test.txt'
+
+    @file_manager.send(:write_file, file, 'This is a test!')
+
+    assert_instance_of File, File.open(file, 'r')
+  end
+
   def test_it_can_receive_enrypted_message_with_key_and_todays_date
     @enigma.stubs(:todays_date).returns('190920')
 
