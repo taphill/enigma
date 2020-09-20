@@ -37,6 +37,10 @@ class Enigma
     { decryption: decryption.join, key: key, date: date }
   end
 
+  def crack(ciphertext:, date: todays_date)
+
+  end
+
   private
 
   attr_reader :character_set
