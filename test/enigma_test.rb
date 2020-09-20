@@ -127,4 +127,16 @@ class EnigmaTest < Minitest::Test
 
     assert_equal expected, enigma.decrypt(message: encrypted[:encryption], key: '02715')
   end
+
+  def test_it_can_crack_message_with_date
+    enigma = Enigma.new
+
+    expected = {
+      decryption: "hello world end",
+      date: "291018",
+      key: "08304"
+    }
+
+    assert_equal expected, enigma.crack(ciphertext: 'vjqtbeaweqihssi', date: '291018')
+  end
 end
