@@ -131,4 +131,12 @@ class MessengerTest < Minitest::Test
 
     assert_equal expected, @file_manager.decrypt_file('encrypted.txt', 'decrypted.txt', '82648', '240818')
   end
+
+  def test_it_can_decrypt_file_with_key_and_todays_date
+    @enigma.stubs(:todays_date).returns('190920')
+
+    expected = "Created 'decrypted.txt' with the key 82648 and date 190920"
+
+    assert_equal expected, @file_manager.decrypt_file('encrypted.txt', 'decrypted.txt', '82648', '190920')
+  end
 end
