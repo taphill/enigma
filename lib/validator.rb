@@ -6,7 +6,8 @@ module Validator
   end
 
   def key_valid?(key)
-    return false unless key.is_a? String
+    return false unless key.is_a?(String)
+
     key.length == 5
   end
 
