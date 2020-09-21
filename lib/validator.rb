@@ -50,7 +50,7 @@ module Validator
   end
 
   def crack_error_message
-    "ERROR: The date entered is invalid.
-       Please a valid date in this format DDMMYY"
+    "ERROR: You entered a date, but it is invalid.
+       If you would like to enter a date, please make sure it is a valid date in this format DDMMYY"
   end
 end
