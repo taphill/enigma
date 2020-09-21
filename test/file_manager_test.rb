@@ -3,9 +3,9 @@ require './test/test_helper'
 class MessengerTest < Minitest::Test
   def setup
     @enigma = Enigma.new
-    @file = './test_message.txt'
-    @stable_file = './test_dont_change.txt'
-    @enrypted_file = './test_encrypted.txt'
+    @file = './fixture/test_message.txt'
+    @stable_file = './fixture/test_dont_change.txt'
+    @enrypted_file = './fixture/test_encrypted.txt'
     
     @file_manager = FileManager.new(@enigma)
   end
@@ -29,7 +29,7 @@ class MessengerTest < Minitest::Test
   end
 
   def test_it_can_write_file
-    file = 'test_write_file.txt'
+    file = './fixture/test_write_file.txt'
 
     @file_manager.send(:write_file, file, 'This is a test!')
 
@@ -148,16 +148,20 @@ class MessengerTest < Minitest::Test
   end
 
   def test_it_can_crack_file_with_date
+    file = './fixture/test_crack_with_date.txt'
+
     expected = "Created 'cracked.txt' with the cracked key 08304 and date 291018"
 
-    assert_equal expected, @file_manager.crack_file('test_crack_with_date.txt', 'cracked.txt', '291018')
+    assert_equal expected, @file_manager.crack_file(file, 'cracked.txt', '291018')
   end
 
   def test_it_can_crack_file_with_todays_date
+    file = './fixture/test_crack_with_todays_date.txt'
+
     @enigma.stubs(:todays_date).returns('291018')
 
     expected = "Created 'cracked.txt' with the cracked key 08304 and date 291018"
 
-    assert_equal expected, @file_manager.crack_file('test_crack_with_todays_date.txt', 'cracked.txt')
+    assert_equal expected, @file_manager.crack_file(file, 'cracked.txt')
   end
 end
