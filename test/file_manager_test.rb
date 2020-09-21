@@ -4,7 +4,7 @@ class MessengerTest < Minitest::Test
   def setup
     @enigma = Enigma.new
     @file = './test_message.txt'
-    @stable_file = './dont_change.txt'
+    @stable_file = './test_dont_change.txt'
     @enrypted_file = './test_encrypted.txt'
     
     @file_manager = FileManager.new(@enigma)
@@ -29,7 +29,7 @@ class MessengerTest < Minitest::Test
   end
 
   def test_it_can_write_file
-    file = 'write_file_test.txt'
+    file = 'test_write_file.txt'
 
     @file_manager.send(:write_file, file, 'This is a test!')
 
