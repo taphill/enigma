@@ -19,11 +19,11 @@ module Validator
   end
 
   def encryption_error?(file_to_encrypt, key, date)
-    please_encrypt(file_to_encrypt, key, date) == error_message
+    please_encrypt(file_to_encrypt, key, date) == key_date_error_message
   end
 
   def decryption_error?(file_to_decrypt, key, date)
-    please_decrypt(file_to_decrypt, key, date) == error_message
+    please_decrypt(file_to_decrypt, key, date) == key_date_error_message
   end
 
   def crack_error?(file_to_crack, date)
@@ -40,7 +40,7 @@ module Validator
     end
   end
 
-  def error_message
+  def key_date_error_message
     "ERROR: Either the key or date entered is invalid.
        Please enter a 5 digit number for the key and a valid date in this format DDMMYY"
   end
