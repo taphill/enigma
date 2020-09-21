@@ -41,7 +41,6 @@ class Enigma
     shift = [0, 1, 2, 3]
     expected = [' ', 'e', 'n', 'd']
     hash = { A: 0, B: 1, C: 2, D: 3 }
-    d = generate_offset(date) 
 
     chars_in_set = ciphertext.split('').find_all do |char|
       character_set.include?(char)
@@ -74,7 +73,41 @@ class Enigma
         hash[:D] = shift_num
       end
     end 
-require 'pry'; binding.pry
+
+    check_shift(hash, date)
+  end
+
+  def check_shift(shift, date)
+    offset = generate_offset(date)
+
+    a_init = (shift[:A].to_i - offset[0].to_i).to_s
+    b_init = (shift[:B].to_i - offset[1].to_i).to_s
+    c_init = (shift[:C].to_i - offset[2].to_i).to_s
+    d_init = (shift[:D].to_i - offset[3].to_i).to_s
+
+    a = a_init
+    b = b_init
+    c = c_init
+    d = d_init
+
+    until a[0] == b[0]
+      b = (b.to_i + 27).to_s
+      if b.to_i > 108
+        a = (a.to_i + 27).to_s
+        b = b_init
+
+        until a[1] == b[0]
+          b = (b.to_i + 27).to_s
+          if b.to_i > 108
+            a = (a.to_i + 27).to_s
+            b = b_init
+          end
+        end
+
+        break if a[1] == b[0]
+      end
+    end
+  require 'pry'; binding.pry 
   end
 
   private
