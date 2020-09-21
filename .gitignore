@@ -3,6 +3,7 @@ coverage
 message.txt
 encrypted.txt
 decrypted.txt
+cracked.txt
 
 test_message.txt
 test_encrypted.txt

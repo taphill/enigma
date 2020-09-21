@@ -33,7 +33,7 @@ class FileManager
     crack = please_crack(file_to_crack, date)
     write_file(new_file, crack[:decryption])
 
-    "Created '#{new_file}' with the key #{crack[:key]} and date #{crack[:date]}"
+    "Created '#{new_file}' with the cracked key #{crack[:key]} and date #{crack[:date]}"
   end
 
   private
