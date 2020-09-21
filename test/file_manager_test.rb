@@ -122,8 +122,8 @@ class MessengerTest < Minitest::Test
   end
 
   def test_it_can_return_crack_error_message
-    expected = "ERROR: The date entered is invalid.
-       Please a valid date in this format DDMMYY"
+    expected = "ERROR: You entered a date, but it is invalid.
+       If you would like to enter a date, please make sure it is a valid date in this format DDMMYY"
 
     assert_equal expected, @file_manager.crack_file(@file, @enrypted_file, '44')
   end
