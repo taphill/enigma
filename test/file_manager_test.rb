@@ -6,7 +6,7 @@ class MessengerTest < Minitest::Test
     @file = './fixture/test_message.txt'
     @stable_file = './fixture/test_dont_change.txt'
     @enrypted_file = './fixture/test_encrypted.txt'
-    
+
     @file_manager = FileManager.new(@enigma)
   end
 
