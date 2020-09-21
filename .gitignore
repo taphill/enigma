@@ -5,11 +5,4 @@ encrypted.txt
 decrypted.txt
 cracked.txt
 
-test_message.txt
-test_encrypted.txt
-test_crack_with_date.txt
-test_crack_with_todays_date.txt
-test_write_file.txt
-test_dont_change.txt
-
 .DS_Store
