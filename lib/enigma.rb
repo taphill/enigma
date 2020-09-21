@@ -1,4 +1,8 @@
+require_relative '../lib/crack_key'
+
 class Enigma
+  include CrackKey
+
   def initialize
     @character_set = ('a'..'z').to_a << ' '
   end

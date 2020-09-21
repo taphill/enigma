@@ -1,12 +1,7 @@
 coverage
 
-message.txt
 encrypted.txt
 decrypted.txt
-
-test_message.txt
-test_encrypted.txt
-write_file_test.txt
-dont_change.txt
+cracked.txt
 
 .DS_Store
