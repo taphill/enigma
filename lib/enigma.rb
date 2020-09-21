@@ -40,7 +40,7 @@ class Enigma
   def crack(ciphertext:, date: todays_date)
     shift = [0, 1, 2, 3]
     expected = [' ', 'e', 'n', 'd']
-    hash = { zero: 0, one: 1, two: 2, three: 3 }
+    hash = { A: 0, B: 1, C: 2, D: 3 }
     d = generate_offset(date) 
 
     chars_in_set = ciphertext.split('').find_all do |char|
@@ -50,7 +50,7 @@ class Enigma
     index = 0
     loop_count = chars_in_set.count - 5
     
-    x = chars_in_set.last(4).map do |char|
+    chars_in_set.last(4).each do |char|
       current_value = character_set.index(char.downcase)
       new_set = character_set.rotate(current_value)
       shift_num = 0
@@ -62,10 +62,19 @@ class Enigma
       end
       index += 1
       loop_count += 1
-require 'pry'; binding.pry
-
+      
+      case shift.rotate(loop_count).first
+      when 0
+        hash[:A] = shift_num
+      when 1
+        hash[:B] = shift_num
+      when 2
+        hash[:C] = shift_num
+      when 3
+        hash[:D] = shift_num
+      end
     end 
-
+require 'pry'; binding.pry
   end
 
   private
