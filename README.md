@@ -1,5 +1,5 @@
 ### Design
-<img src="https://ibb.co/98fyKPkg" alt="enigma-org-chart">
+<img src="https://i.ibb.co/Bz7TWk5/Enigma.png" alt="enigma-org-chart">
 
 ### Enigma Project Self Evaluation
 
