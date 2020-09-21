@@ -1,4 +1,4 @@
-module Cracked
+module CrackKey
   def crack(ciphertext:, date: todays_date)
     shift = [0, 1, 2, 3]
     expected = [' ', 'e', 'n', 'd']
@@ -48,6 +48,7 @@ module Cracked
     d_init = (shift[:D].to_i - offset[3].to_i).to_s
 
     shifts = [a_init, b_init, c_init, d_init]
+
     shifts.map! do |num|
       num = (num.to_i + 27).to_s if num.to_i < 0
 
