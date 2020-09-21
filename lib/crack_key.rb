@@ -10,20 +10,21 @@ module CrackKey
 
     index = 0
     loop_count = chars_in_set.count - 5
-    
+
     chars_in_set.last(4).each do |char|
       current_value = character_set.index(char.downcase)
       new_set = character_set.rotate(current_value)
       shift_num = 0
       until char == expected[index]
-        char = new_set.rotate(-shift_num).first   
+        char = new_set.rotate(-shift_num).first
         break if char == expected[index]
 
         shift_num += 1
       end
+
       index += 1
       loop_count += 1
-      
+
       case shift.rotate(loop_count).first
       when 0
         hash[:A] = shift_num
@@ -34,7 +35,7 @@ module CrackKey
       when 3
         hash[:D] = shift_num
       end
-    end 
+    end
 
     find_key(ciphertext, hash, date)
   end
@@ -50,15 +51,15 @@ module CrackKey
     shifts = [a_init, b_init, c_init, d_init]
 
     shifts.map! do |num|
-      num = (num.to_i + 27).to_s if num.to_i < 0
+      num = (num.to_i + 27).to_s if num.to_i.negative?
 
       if num.to_i.digits.count < 2
-        num = "%02d" % num
+        format('%02d', num)
       else
         num
       end
     end
-    
+
     a = shifts[0]
     b = shifts[1]
     c = shifts[2]
