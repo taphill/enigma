@@ -9,6 +9,7 @@ class FileManager
   end
 
   def encrypt_file(file_to_encrypt, new_file, key = nil, date = nil)
+    return file_error_message if file_error?(file_to_encrypt, new_file)
     return error_message if encryption_error?(file_to_encrypt, key, date)
 
     encryption = please_encrypt(file_to_encrypt, key, date)
@@ -18,6 +19,7 @@ class FileManager
   end
 
   def decrypt_file(file_to_decrypt, new_file, key = nil, date = nil)
+    return file_error_message if file_error?(file_to_decrypt, new_file)
     return 'ERROR: You must enter a key to decrypt a message' if key.nil?
     return error_message if decryption_error?(file_to_decrypt, key, date)
 
@@ -28,6 +30,7 @@ class FileManager
   end
 
   def crack_file(file_to_crack, new_file, date = nil)
+    return file_error_message if file_error?(file_to_crack, new_file)
     return crack_error_message if crack_error?(file_to_crack, date)
 
     crack = please_crack(file_to_crack, date)
