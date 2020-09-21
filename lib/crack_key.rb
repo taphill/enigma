@@ -36,10 +36,10 @@ module CrackKey
       end
     end 
 
-    check_shift(ciphertext, hash, date)
+    find_key(ciphertext, hash, date)
   end
 
-  def check_shift(ciphertext, shift, date)
+  def find_key(ciphertext, shift, date)
     offset = generate_offset(date)
 
     a_init = (shift[:A].to_i - offset[0].to_i).to_s
