@@ -101,7 +101,7 @@ class MessengerTest < Minitest::Test
     assert_equal expected, @file_manager.crack_file('test.txt', '99000')
   end
 
-  def test_encrypt_file_can_return_error_message
+  def test_encrypt_file_can_return_key_date_error_message
     expected = "ERROR: Either the key or date entered is invalid.
        Please enter a 5 digit number for the key and a valid date in this format DDMMYY"
 
@@ -114,7 +114,7 @@ class MessengerTest < Minitest::Test
     assert_equal expected, @file_manager.decrypt_file(@file, @enrypted_file)
   end
 
-  def test_decrypt_file_can_return_error_message
+  def test_decrypt_file_can_return_key_date_error_message
     expected = "ERROR: Either the key or date entered is invalid.
        Please enter a 5 digit number for the key and a valid date in this format DDMMYY"
 
