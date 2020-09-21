@@ -38,6 +38,33 @@ class Enigma
   end
 
   def crack(ciphertext:, date: todays_date)
+    shift = [0, 1, 2, 3]
+    expected = [' ', 'e', 'n', 'd']
+    hash = { zero: 0, one: 1, two: 2, three: 3 }
+    d = generate_offset(date) 
+
+    chars_in_set = ciphertext.split('').find_all do |char|
+      character_set.include?(char)
+    end
+
+    index = 0
+    loop_count = chars_in_set.count - 5
+    
+    x = chars_in_set.last(4).map do |char|
+      current_value = character_set.index(char.downcase)
+      new_set = character_set.rotate(current_value)
+      shift_num = 0
+      until char == expected[index]
+        char = new_set.rotate(-shift_num).first   
+        break if char == expected[index]
+
+        shift_num += 1
+      end
+      index += 1
+      loop_count += 1
+require 'pry'; binding.pry
+
+    end 
 
   end
 
