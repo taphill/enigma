@@ -7,6 +7,8 @@ cracked.txt
 
 test_message.txt
 test_encrypted.txt
+test_crack_with_date.txt
+test_crack_with_todays_date.txt
 write_file_test.txt
 dont_change.txt
 
