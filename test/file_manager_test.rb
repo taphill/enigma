@@ -103,6 +103,13 @@ class MessengerTest < Minitest::Test
     assert_equal expected, @file_manager.decrypt_file(@file, @enrypted_file, '44')
   end
 
+  def test_it_can_return_crack_error_message
+    expected = "ERROR: The date entered is invalid.
+       Please a valid date in this format DDMMYY"
+
+    assert_equal expected, @file_manager.crack_file(@file, @enrypted_file, '44')
+  end
+
   def test_it_can_encrypt_file_with_key_and_date
     expected = "Created 'encrypted.txt' with the key 02715 and date 040895"
 
@@ -138,5 +145,19 @@ class MessengerTest < Minitest::Test
     expected = "Created 'decrypted.txt' with the key 82648 and date 190920"
 
     assert_equal expected, @file_manager.decrypt_file('encrypted.txt', 'decrypted.txt', '82648', '190920')
+  end
+
+  def test_it_can_crack_file_with_date
+    expected = "Created 'cracked.txt' with the cracked key 08304 and date 291018"
+
+    assert_equal expected, @file_manager.crack_file('test_crack_with_date.txt', 'cracked.txt', '291018')
+  end
+
+  def test_it_can_crack_file_with_todays_date
+    @enigma.stubs(:todays_date).returns('291018')
+
+    expected = "Created 'cracked.txt' with the cracked key 08304 and date 291018"
+
+    assert_equal expected, @file_manager.crack_file('test_crack_with_todays_date.txt', 'cracked.txt')
   end
 end
