@@ -30,9 +30,23 @@ module Validator
     please_crack(file_to_crack, date) == crack_error_message
   end
 
+  def file_error?(file_read, file_write)
+    return true if file_read.nil? || file_write.nil?
+
+    if file_read.split('').last(4).join == '.txt' && file_write.split('').last(4).join == '.txt'
+      false
+    else
+      true
+    end
+  end
+
   def error_message
     "ERROR: Either the key or date entered is invalid.
        Please enter a 5 digit number for the key and a valid date in this format DDMMYY"
+  end
+
+  def file_error_message
+    'ERROR: Make sure you enter a .txt file to read from AND a .txt file to write to'
   end
 
   def crack_error_message
