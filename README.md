@@ -1,3 +1,6 @@
+### Design
+<img src="https://ibb.co/98fyKPkg" alt="enigma-org-chart">
+
 ### Enigma Project Self Evaluation
 
 - Functionality: 4
