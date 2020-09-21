@@ -27,6 +27,15 @@ class FileManager
     "Created '#{new_file}' with the key #{decryption[:key]} and date #{decryption[:date]}"
   end
 
+  def crack_file(file_to_crack, new_file, date = nil)
+    return crack_error_message if crack_error?(file_to_crack, date)
+
+    crack = please_crack(file_to_crack, date)
+    write_file(new_file, crack[:decryption])
+
+    "Created '#{new_file}' with the key #{crack[:key]} and date #{crack[:date]}"
+  end
+
   private
 
   def please_encrypt(file_to_encrypt, key, date)
@@ -46,6 +55,15 @@ class FileManager
     return enigma.decrypt(message: file.read, key: key) if key_valid?(key) && date.nil?
 
     error_message
+  end
+
+  def please_crack(file_to_crack, date)
+    file = File.open(file_to_crack, 'r')
+
+    return enigma.crack(ciphertext: file.read, date: date) if date_valid?(date)
+    return enigma.crack(ciphertext: file.read) if date.nil?
+
+    crack_error_message
   end
 
   def write_file(file, message)
