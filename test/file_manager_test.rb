@@ -83,6 +83,24 @@ class MessengerTest < Minitest::Test
     assert_equal expected, @file_manager.send(:please_decrypt, @stable_file, '02715', nil)
   end
 
+  def test_it_can_return_decrypt_file_file_error
+    expected = 'ERROR: Make sure you enter a .txt file to read from AND a .txt file to write to'
+
+    assert_equal expected, @file_manager.encrypt_file('test.txt', '99000')
+  end
+
+  def test_it_can_return_encrypt_file_file_error
+    expected = 'ERROR: Make sure you enter a .txt file to read from AND a .txt file to write to'
+
+    assert_equal expected, @file_manager.decrypt_file('test.txt', '99000')
+  end
+
+  def test_it_can_return_crack_file_file_error
+    expected = 'ERROR: Make sure you enter a .txt file to read from AND a .txt file to write to'
+
+    assert_equal expected, @file_manager.crack_file('test.txt', '99000')
+  end
+
   def test_encrypt_file_can_return_error_message
     expected = "ERROR: Either the key or date entered is invalid.
        Please enter a 5 digit number for the key and a valid date in this format DDMMYY"
